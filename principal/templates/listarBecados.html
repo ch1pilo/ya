@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="{% static 'css/style9.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Becados</title>
+</head>
+<body>
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="descargar">
+                <a href="{% url 'descargarBecados' %}"> 
+                    Descargar Becados
+                </a>
+            </button>
+            <button type="button" class="atras">
+                <a href="../profile"> 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+            
+        </div>
+    </div>  
+    <h2>Listado de Becados</h2>
+    <form method="GET" action="{% url 'listarBecado' %}">
+        <label for="carrera">Selecciona la carrera:</label>
+        <select name="carrera" id="carrera" onchange="this.form.submit();">
+            <option value="">-- Todas las Carreras --</option>
+            {% for carrera in carreras %}
+                <option value="{{ carrera.id }}" {% if carrera_seleccionada|stringformat:"d" == carrera.id %}selected{% endif %}>
+                    {{ carrera.Nombre }}
+                </option>
+            {% endfor %}
+        </select>
+
+        <label for="fecha_inicio">Fecha de Inicio:</label>
+        <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ fecha_inicio }}">
+
+        <label for="fecha_fin">Fecha de Fin:</label>
+        <input type="date" name="fecha_fin" id="fecha_fin" value="{{ fecha_fin }}">
+
+        <button type="submit">Filtrar</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Carrera</th>
+                <th>Fecha de Postulación</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for postulado in postulados %}
+            <tr>
+                <td>{{ postulado.id }}</td>
+                <td>{{ postulado.Nombres }}</td>
+                <td>{{ postulado.Apellidos }}</td>
+                <td>{{ postulado.postuladodacademicos.Carrer_a_postular.Nombre }}</td>
+                <td>{{ postulado.Fecha_postulacion }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

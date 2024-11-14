@@ -1,0 +1,98 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/Style.css' %}"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio</title>
+</head>
+<header>
+   <div class="logo">
+      <img src="{% static "img/logo 4.png" %}" alt=""> 
+      <h6>Gestor Simon Rodriguez</h6>  
+    </div>
+    <div class="paginas">
+        <ul>
+            <li>Inicio</li>
+            <li>Comunidad</li>
+        </ul>
+    </div>
+    <div class="login">
+        <ul>
+            <li><button><a href="{% url "login" %}">Sign in</a></button></li>
+        </ul>
+    </div>
+</header>
+<body>
+    <div class="pres"></div>
+    <div class="contenido">
+        <h1>Gestor Simon</h1>
+        <h4>Gestion eficiente, oportunidades brillantes. </h4>
+    </div>
+    <div class="modulos">
+        <div class="somos">
+            <h1>¿Quienes somos?</h1>
+            <label for=""><p class="desktop">
+                En el Decanato de Extensión 
+                de la Universidad Dr. José Gregorio Hernández,
+                nos dedicamos a brindar apoyo y oportunidades
+                a nuestros estudiantes a través de un sistema
+                integral de gestión de becas. Nuestro objetivo
+                es facilitar el acceso a la educación superior y 
+                asegurar que todos los estudiantes tengan la 
+                posibilidad de alcanzar su máximo potencial 
+                académico y profesional.
+            </p>
+            <p class="movil">En el Decanato de
+                 Extensión de la Universidad Dr. 
+                 José Gregorio Hernández, 
+                 brindamos apoyo y oportunidades 
+                 a nuestros estudiantes a través 
+                 de un sistema integral de gestión
+                 de becas, facilitando así el 
+                 acceso a la educación superior y
+                 ayudando a todos a alcanzar su 
+                 máximo potencial académico y 
+                 profesional.</p>
+            <img src="{% static "img/somos.jpg" %}" alt=""></label>
+        </div>
+        <div class="ofrecemos">
+            <label for=""><img src="{% static "img/ofrece.jpg" %}" alt=""><p class="desktop">
+                Nuestro sitio web es una plataforma 
+                diseñada para llevar un control eficiente de 
+                los becados, permitiendo:
+                <br><br>* Acceso a Información: Proporcionar 
+                información actualizada sobre las becas 
+                disponibles, 
+                requisitos y plazos.
+                <br><br>* Mejoras Continuas: 
+                Implementar un sistema en constante 
+                desarrollo que busca sistematizar y 
+                optimizar los procesos administrativos 
+                del Decanato de Extensión y Desarrollo 
+                Estudiantil.
+            </p></label>
+            <h1>¿Qué ofrecemos?</h1>
+            <p class="movil">
+                Nuestro sitio web permite un control eficiente de los becados, ofreciendo:
+                <br><br>* Información Actualizada: Acceso a datos sobre becas, requisitos y plazos.
+                <br><br>* Mejoras Continuas: Un sistema en constante desarrollo para optimizar procesos administrativos.
+            </p>
+        </div>
+        <div class="redes">
+            <h1>Redes sociales</h1>
+            <label for=""><p>Estamos comprometidos con 
+                la transparencia y la comunicación abierta. 
+                Conéctate con nosotros a través de nuestras 
+                redes sociales para conocer más sobre 
+                nuestras actividades, noticias y 
+                oportunidades:
+                <br><br>Facebook: <a href="https://www.facebook.com/infoujgh/?locale=es_LA">Universidad Dr Jose Gregorio Hernandez</a>
+                <br>Twitter: <a href="https://twitter.com/infoujgh">infoUJGH</a>
+                <br>Instagram: <a href="https://www.instagram.com/infoujgh/?hl=es">@infoUJGH</a></p>
+                <img src="{% static "img/redes.jpg" %}" alt=""></label>                
+        </div>
+    </div>
+</body>
+</html>

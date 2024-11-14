@@ -1,0 +1,170 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos</title>
+    <link rel="stylesheet" href="{% static "css/style5.css" %}">
+</head>
+<body>
+    <div class="contenido">
+        <div class="top-bar"> 
+            <div class="user-info">
+                {% if request.user.is_authenticated %}
+                    <span>Usuario: {{ request.user.tipoUser }}</span>
+                {% endif %}
+            </div>
+            <div class="button-group">
+                <button type="button" class="atras">
+                    <a href="../reporte" > 
+                        <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                    </a>
+                </button>
+            </div>
+        </div>  
+        
+        <div class="conteni">
+    
+            <div class="ava">
+                <img src="{% static "img/usuario.png" %}" alt="">
+                <h1>{{ nom }} {{ ape}}</h1>
+            </div>
+            <div class="for">
+    
+                
+                <div class="comluma">
+                    <div class="fila">
+                    <label for="">Cedula
+                        {% for i in dp  %}
+                            {% if i.id == id %}
+                                <p>{{i.Cedula_P}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </label>
+                    <label for="">Fecha de Nacimiento
+                        {% for i in dp  %}
+                            {% if i.id == id %}
+                                <p>{{i.Fechanacimiento}}</p>
+                            {% endif %}
+                        {% endfor %}
+                    </label>
+    
+                    </div>
+                    <div class="fila1">
+                        <label for="">Grupo Etnico
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.GrupoEtnico}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+                        <label for="">N_TLF
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.N_TLF}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+    
+                    </div>
+                    <div class="fila1">
+                        <label for="">Correo 
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.CorreoE}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+                        <label for="">Fecha postulacion
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.Fecha_postulacion}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+    
+                    </div>
+                    <div class="fila1">
+                        <label for="">Estatus
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.estatus}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+                        <label for="">Direccion
+                            {% for i in dp  %}
+                                {% if i.id == id %}
+                                    <p>{{i.Direccion}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>  
+                    </div>
+
+
+                    <div class="division">
+                        <p class="division"></p>
+                    </div>
+
+                    <div class="fila1">
+                        <label for="">Colegio de egreso 
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    <p>{{i.ColegioEgreso}}</p>
+                                {% endif %}  
+                            {% endfor %}
+                        </label>
+                        <label for="">año de graduacion
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    <p>{{i.AnoGraduacion}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>  
+                    </div>
+
+                    <div class="fila1">
+                        <label for="">Trabaja
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    <p>{{i.Trabaja}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+                        <label for="">Carrera
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    {% for p in car %}
+                                        {% if p.id == i.Carrer_a_postular.id %}
+                                           <p>{{p.Nombre}}</p>
+                                        {% endif %}
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </label>  
+                    </div>
+
+                    <div class="fila1">
+                        <label for="">Como Conocio el Programa
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    <p>{{i.Programa}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>
+                        <label for="">EstudiosPrevios
+                            {% for i in da  %}
+                                {% if i.idPostulado.id == id %}
+                                    <p>{{i.EstudiosPrevios}}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </label>  
+                    </div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</body>
+</html>

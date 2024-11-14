@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Facultad</title>
+    <link rel="stylesheet" href="{% static 'css/Style8.css' %}">
+</head>
+<body>
+
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>
+
+    <h1>Agregar Facultad</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="facult">Nombre de la Facultad:</label>
+        <input type="text" name="facult" required>
+        <button type="submit">Agregar Facultad</button>
+    </form>
+    <a href="{% url 'lista_facultades' %}">Volver a la lista de facultades</a>
+</body>
+</html>

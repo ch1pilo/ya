@@ -1,0 +1,89 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listado de Postulados</title>
+    <link rel="stylesheet" href="{% static 'css/style9.css' %}">
+</head>
+<body>
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="descargar">
+                <a href="{% url 'descargar_postulados' %}"> 
+                    Descargar Postulados
+                </a>
+            </button>
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>    
+    
+        <h2>Listado de Postulados</h2>
+
+        <form method="GET" action="{% url 'listar_postulados' %}">
+            <label for="estatus">Selecciona el estatus:</label>
+            <select name="estatus" id="estatus" onchange="this.form.submit();">
+                <option value="pendiente" {% if estatus_seleccionado == 'pendiente' %}selected{% endif %}>Pendiente</option>
+                <option value="aprobado" {% if estatus_seleccionado == 'aprobado' %}selected{% endif %}>Aprobado</option>
+            </select>
+        
+            <label for="carrera">Selecciona la carrera:</label>
+            <select name="carrera" id="carrera" onchange="this.form.submit();">
+                <option value="">-- Todas las Carreras --</option>
+                {% for carrera in carreras %}
+                    <option value="{{ carrera.id }}" {% if carrera_seleccionada|stringformat:"d" == carrera.id %}selected{% endif %}>
+                        {{ carrera.Nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        
+            <label for="fecha_inicio">Fecha de Inicio:</label>
+            <input type="date" name="fecha_inicio" id="fecha_inicio" value="{{ fecha_inicio }}">
+        
+            <label for="fecha_fin">Fecha de Fin:</label>
+            <input type="date" name="fecha_fin" id="fecha_fin" value="{{ fecha_fin }}">
+        
+            <button type="submit">Filtrar</button>
+        </form>
+
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Cédula</th>
+            <th>Carrera</th>
+            <th>Fecha de Postulación</th>
+            <th>Estatus</th>
+        </tr>
+        {% for p in postulados %}
+        <tr>
+            <td>{{ p.Nombres }}</td>
+            <td>{{ p.Apellidos }}</td>
+            <td>{{ p.Cedula_P }}</td>
+            <td>
+                {% for pa in p.postuladodacademicos_set.all %}
+                    {{ pa.Carrer_a_postular.Nombre }}<br>
+                {% endfor %}
+            </td>
+            <td>{{ p.Fecha_postulacion|date:"Y-m-d" }}</td>
+            <td>{{ p.estatus }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">No hay postulados con estos filtros.</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+{% load static %}<!DOCTYPE 
+html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "css/style3.css" %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>listado</title>
+</head>
+<body>
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>    
+    <h2>Listado de Postulados</h2>
+    <table>
+        <tr>
+            <th>Nombre</th> 
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Estatus</th>
+            <th>Postulado por</th>
+            <th>Accion </th>
+            
+        </tr>
+        {% for p in pos %}
+            {% if p.estatus == "pendiente" %}
+            <tr class="colum">
+                <td>{{ p.Nombres|upper }}</td>
+                <td>{{ p.Apellidos|upper}}</td>
+                <td>{{ p.Cedula_P|upper }}</td>
+                {% if p.estatus == "pendiente" %}
+                    <td class="color1">{{ p.estatus|upper }}</td>
+                {% endif %}
+                
+                
+                <td>
+                    {% with postulador=None %}
+                        {% for i in ac %}
+                            {% if i.idPostulado.id == p.id %}
+                                {% with postulador=i.idDPostulador %}
+                                    {{ postulador.Nombre|upper }} {{ postulador.Apellino|upper }}
+                                {% endwith %}
+                                {% else %}
+                            No asignado
+                            {% endif %}
+                        {% endfor %}
+                    {% endwith %}
+                </td>
+
+                <td class="for">
+                    <form method="POST" action="../aprobar/">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{p.id}}">
+                        <button type="submit"> Aprobar</button>
+                    </form>
+                    <form method="POST" action="../negar/">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{p.id}}">
+                        <button type="submit"> Negar</button>
+                    </form>
+                    
+                </td>
+            </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    
+</body>
+</html>

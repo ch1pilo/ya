@@ -1,0 +1,161 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/Style4.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Postular</title>
+</head>
+<body>
+   
+    <div class="contenedor">
+        <h1>Datos Académicos</h1>
+        <form method="POST" action="../contiInsert/">
+            {% csrf_token %}
+            <div class="for">
+                <div class="fila">  
+                    <div class="Nombre">
+                        <input name="colegio" type="text" placeholder="Colegio de Procedencia" required>
+                    </div>
+                    <div class="graduacion">
+                        <input name="an" type="text" placeholder="Año de graduación" required>
+                    </div>
+                </div>
+                
+                <div class="fila1">
+                    <div class="Fecha">
+                        <select name="estu" id="opcion" onchange="mostrarCampoAdicional()">
+                            <option value="">Estudios Universitarios Previos</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select> 
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="comentario" id="campoAdicional" style="display: none;">
+                        <input name="comen" type="text" placeholder="Comentario">
+                    </div>
+                </div>
+
+                <div class="fila1">
+                    <div class="Fecha">
+                        <select name="traba" id="opcion2" onchange="mostrarCampoAdicional2()">
+                            <option value="">Trabajas</option>
+                            <option value="si">Sí</option>
+                            <option value="no">No</option>
+                        </select> 
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="comentario" id="campoAdicional2" style="display: none;">
+                        <input name="comen1" type="text" placeholder="Comentario">
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="Cedula">
+                        <select name="idp">
+                            <option value="">Postulado por</option>
+                            {% for i in postu %}
+                                <option value="{{ i.id }}">{{ i.Nombre }} {{ i.Apellino }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="tlf">
+                        <select id="opcion3" onchange="mostrarCarreras()" aria-label="Carrera" required>
+                            <option value="">Selecciona una Facultad</option>
+                            {% for i in facul %}
+                                <option value="{{ i.id }}">{{ i.facult }}</option>
+                                
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila" id="carreraContainer" style="display: none;">
+                    <div class="carrera">
+                        <select name="carrera" id="opcionCarrera">
+
+                            <option>Selecciona una Carrera</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="fila">
+                    <div class="Correo">
+                        <input name="progra" type="text" placeholder="¿Cómo conoció el programa?">
+                    </div>
+                </div>
+            </div>
+
+            <input type="hidden" name="id" value="{{ id }}">
+            
+            <div class="boton">
+                <button type="submit" class="continuar">Terminar</button>
+            </div>
+        </form>
+
+        <script>
+            const carrerasData = {
+                {% for id, carrera_list in carreras.items %}
+                    "{{ id }}": [
+                        {% for carrera in carrera_list %}
+                            { "id": "{{ carrera.id }}", "nombre": "{{ carrera.Nombre }}" },
+                        {% endfor %}
+                    ],
+                {% endfor %}
+            };
+
+            function mostrarCarreras() {
+                const facultadSelect = document.getElementById('opcion3');
+                const carreraSelect = document.getElementById('opcionCarrera');
+                const carreraContainer = document.getElementById('carreraContainer');
+
+                const selectedFacultad = facultadSelect.value;
+
+                // Limpia las opciones de carrera
+                carreraSelect.innerHTML = '<option value="">Selecciona una Carrera</option>';
+
+                if (selectedFacultad) {
+                    const carreras = carrerasData[selectedFacultad];
+                    if (carreras) {
+                        carreras.forEach(carrera => {
+                            const option = document.createElement('option');
+                            option.value = carrera.id;
+                            option.textContent = carrera.nombre;
+                            carreraSelect.appendChild(option);
+                        });
+                        carreraContainer.style.display = 'block';  // Muestra el contenedor de carreras
+                    } else {
+                        carreraContainer.style.display = 'none';  // Oculta si no hay carreras
+                    }
+                } else {
+                    carreraContainer.style.display = 'none';  // Oculta si no se seleccionó facultad
+                }
+            }
+
+            function mostrarCampoAdicional() {
+                var select = document.getElementById("opcion");
+                var campoAdicional = document.getElementById("campoAdicional");
+                
+                // Muestra el campo adicional si se selecciona "sí"
+                campoAdicional.style.display = (select.value === "si") ? "block" : "none";
+            }
+
+            function mostrarCampoAdicional2() {
+                var select = document.getElementById("opcion2");
+                var campoAdicional = document.getElementById("campoAdicional2");
+                
+                // Muestra el campo adicional si se selecciona "sí"
+                campoAdicional.style.display = (select.value === "si") ? "block" : "none";
+            }
+        </script>
+    </div>
+</body>
+</html>

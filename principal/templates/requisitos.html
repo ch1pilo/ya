@@ -1,0 +1,115 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Requisitos</title>
+    <link rel="stylesheet" href="{% static "css/style5.css" %}">
+</head>
+<body>
+    
+    
+    <div class="contenedor">
+
+        <div class="im">
+            <img src="{% static "img/usuario.png" %}" alt="">
+        </div>
+        <div class="for">
+
+            <h1>{{ nom }} {{ ape}}</h1>
+            
+            <form action="../aggRe/" method="POST">
+            {% csrf_token %}
+            <div class="comluma">
+                <div class="fila">
+                <label for="">Prueba obsu
+
+                {% if po == 'pendiente' %}
+                <select name='pO' class="color">
+                    <option >{{po}}</option>
+                    <option >Entregado</option>
+                </select>
+                {% else %}
+                <select name='pO' class="color1">
+                    <option >{{po}}</option>
+                    <option >pendiente</option>
+                </select>
+                {% endif %}
+            </label>
+            <label for="">Notas certificadas
+                {% if nc == 'pendiente' %}
+                <select name="nc" class="color">
+                    <option >{{nc}}</option>
+                    <option >Entregado</option>
+                </select>
+                {% else %}
+                <select name="nc" class="color1">
+                    <option >{{nc}}</option>
+                    <option >pendiente</option>
+                </select>
+                {% endif %}
+            </label>
+
+                </div>
+                <div class="fila1">
+                    <label for="">Titulo de bachiller
+                        {% if tb == 'pendiente' %}
+                        <select name="tb" class="color">
+                            <option >{{tb}}</option>
+                            <option >Entregado</option>
+                        </select>
+                        {% else %}
+                        <select name="tb" class="color1">
+                            <option >{{tb}}</option>
+                            <option >pendiente</option>
+                        </select>
+                        {% endif %}
+                </label>
+                <label for="" class="columna_derecha">Copia de la cedula
+                    {% if fc == 'pendiente' %}
+                    <select name="cc" class="color">
+                        <option >{{fc}}</option>
+                        <option >Entregado</option>
+                    </select>
+                    {% else %}
+                    <select name="cc" class="color1">
+                        <option >{{fc}}</option>
+                        <option >pendiente</option>
+                    </select>
+                    {% endif %}
+                </label>
+
+                </div>
+                <div class="fila2">
+                    <label for="">Foto tipo carnet 
+
+                        {% if ft == 'pendiente' %}
+                        <select name="ftc" class="color">
+                            <option >{{ft}}</option>
+                            <option >Entregado</option>
+                        </select>
+                        {% else %}
+                        <select name="ftc" class="color1">
+                            <option >{{ft}}</option>
+                            <option >pendiente</option>
+                        </select>
+                        {% endif %}
+                </label>
+
+                </div>
+            </div>
+            <input type="hidden" name="id" value="{{id}}">
+            <div class="boton">
+                <button type="submit">
+                    Actualizar
+                </button>
+                <button value="Inscrito" class="a" type="submit" name ="act">
+                    Inscrito 
+                </button >
+            </div>    
+        </form>
+        </div>
+    </div>
+</body>
+</html>

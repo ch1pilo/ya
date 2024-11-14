@@ -1,0 +1,42 @@
++{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Carrera</title>
+    <link rel="stylesheet" href="{% static 'css/Style8.css' %}">
+</head>
+<body>
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>
+    <h1>Agregar Carrera</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="facultad_id">Seleccionar Facultad:</label>
+        <select name="facultad_id" required>
+            {% for facultad in facultades %}
+                <option value="{{ facultad.id }}">{{ facultad.facult }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="nombre_carrera">Nombre de la Carrera:</label>
+        <input type="text" name="nombre_carrera" required>
+
+        <button type="submit">Agregar Carrera</button>
+    </form>
+    <a href="{% url 'lista_facultades' %}">Volver a la lista de facultades</a>
+</body>
+</html>

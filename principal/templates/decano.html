@@ -1,0 +1,114 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/Style1.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Simon</title>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="salir">
+                <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+            </button>
+        </form>
+    </div>
+    <div class="contenido">
+        <div class="titulo">
+            {% if request.user.is_authenticated %}
+                <h1>¡Bienvenido {{ request.user.username }}!</h1>
+            {% endif %}
+            <h4>Gestión eficiente, oportunidades brillantes</h4>
+        </div>
+
+        <div class="contenedor">
+            <div class="fila">
+                <button class="edit">
+                    <a href='../ediPerfil'>
+                        <img src="{% static 'img/editar.png' %}" alt="">
+                        <p>Editar perfil</p>
+                    </a>
+                </button>
+                <button class="reporte" onclick="toggleSubOptions(this)">
+                    <img src="{% static 'img/informe.png' %}" alt="">
+                    <p>Reportes</p>
+                </button>
+                <div class="sub-options">
+                    <a href="../reporte">
+                        <div class="sub-card">
+                            <img src="{% static 'img/informe.png' %}" alt="">
+                            <p>Datos del<br>postulado</p>
+                        </div>
+                    </a>
+                    <a href="">
+                        <div class="sub-card">
+                            <img src="{% static 'img/informe.png' %}" alt="">
+                            <p>Datos del <br>Becado</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="fila1">
+                <button class="postular">
+                    <a href="../postular">
+                        <img src="{% static 'img/formula.png' %}" alt="">
+                        <p>Postular</p>
+                    </a>
+                </button>
+                
+                <button class="lp">
+                    <a href="../lP">
+                        <img src="{% static 'img/formula.png' %}" alt="">
+                        <p>Estatus del postulado</p>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="ins"><a href="https://www.facebook.com/infoujgh/?locale=es_LA"><img src="{% static 'img/ins.png' %}" alt=""></a></div>
+        <div class="face"><a href="https://twitter.com/infoujgh"><img src="{% static 'img/face.png' %}" alt=""></a></div>
+        <div class="x"><a href="https://www.instagram.com/infoujgh/?hl=es"><img src="{% static 'img/x.png' %}" alt=""></a></div>
+    </footer>
+    <div class="overlay" id="overlay" onclick="closeOptions()"></div>
+
+    <script>
+
+        function toggleSubOptions(button) {
+            const subOptions = button.nextElementSibling; // Obtiene las subopciones
+            const overlay = document.getElementById('overlay');
+            
+            // Si las subopciones están visibles, ciérralas
+            if (subOptions.style.display === 'flex') {
+                closeOptions();
+            } else {
+                // Muestra las subopciones y el overlay
+                closeAllSubOptions(); // Cierra otras subopciones si están abiertas
+                subOptions.style.display = 'flex';
+                overlay.style.display = 'block';
+            }
+        }
+        
+        function closeAllSubOptions() {
+            const subOptions = document.querySelectorAll('.sub-options'); // Selecciona todas las subopciones
+            subOptions.forEach(option => {
+                option.style.display = 'none'; 
+            });
+        }
+
+        function closeOptions() {
+            const overlay = document.getElementById('overlay');
+            closeAllSubOptions(); // Cierra todas las subopciones
+            overlay.style.display = 'none'; 
+        }
+    </script>
+</body>
+</html>

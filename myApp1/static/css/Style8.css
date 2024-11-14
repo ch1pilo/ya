@@ -1,0 +1,105 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+h1 {
+    color: #333;
+    text-align: center;
+}
+
+form {
+    background: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input[type="text"],
+select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+a {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #007BFF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+button img {
+    margin-top: -15px;
+    height: 30px;
+    width: 30px;
+}
+
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; 
+    color: white;
+    padding: 10px 20px;
+    position: relative;
+    z-index: 2; 
+}
+
+.user-info {
+    font-size: 16px; 
+}
+.button-group {
+    display: flex;
+    align-items: center;
+}
+.atras  {
+    margin-left: auto;
+    text-decoration: none; 
+    width: 55px; 
+    height: 45px;
+    background-color: #8aacc8;
+    color: #fff; 
+    border: none; 
+    border-radius: 9px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.atras:hover {
+    background-color: #4e80a9; /* Color de fondo al pasar el mouse */
+}

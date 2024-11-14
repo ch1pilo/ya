@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Postulador</title>
+    <link rel="stylesheet" href="{% static "css/style7.css" %}">
+    
+</head>
+<body>
+    <div class="atras">
+        <a href="../profile"><img src="{% static "img/cerrar-sesion-de-usuario.png" %}" alt=""></a>
+    </div>
+<div class="container">
+    <h2>Registro de Usuario</h2>
+    <form method="POST" action="../aggPostulador/">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="username">Nombre</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+
+        <div class="form-group">
+            <label for="ape">Apellido</label>
+            <input type="text" name="ape" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Cedula</label>
+            <input type="text" name="ced" required maxlength="8">
+        </div>
+        
+        
+        
+        <div class="form-group">
+            <button type="submit">Registrar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

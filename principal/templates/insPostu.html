@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "css/style3.css" %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista</title>
+</head>
+<body>
+    <div class="top-bar"> 
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>  
+    <h2>Listado de Postulados aprobados</h2>
+    <table>
+        <tr>
+            <th>Nombre</th> 
+            <th>Apellido</th>
+            <th>Cedula</th>
+            <th>Accion </th>
+            
+        </tr>
+        {% for p in pos %}
+            {%if p.estatus == "aprobado" %}
+                <tr class="colum">
+                    <td>{{ p.Nombres }}</td>
+                    <td>{{ p.Apellidos }}</td>
+                    <td>{{ p.Cedula_P }}</td>
+
+                    <td>
+                        <form action="../requisitos/" method="POST">
+                            {% csrf_token %}
+                            <input type="hidden" name="nombre" value="{{p.Nombres}}">
+                            <input type="hidden" name="id" value="{{p.id}}">
+                            <input type="hidden" name="apellido" value="{{p.Apellidos}}">
+                            <button type="submit" class="ver">Ver</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    
+</body>
+</html>

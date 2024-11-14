@@ -1,0 +1,219 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background: url(../img/fondoa2.jpg) center / cover no-repeat;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+img {
+    height: 30px;
+    width: 30px;
+}
+.top-bar {
+    height: 45px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000; 
+    color: white;
+    padding: 10px 20px; /* Espaciado en la barra */
+    position: relative;
+    z-index: 2; /* Asegura que esté encima del contenido */
+}
+
+.user-info {
+    font-size: 16px; /* Tamaño de fuente para la información del usuario */
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+.atras  {
+    margin-left: auto;
+    text-decoration: none; 
+    margin-right: 20px;
+    width: 55px; 
+    height: 45px;
+    background-color: #8aacc8;
+    color: #fff; 
+    border: none; 
+    border-radius: 9px; 
+    padding: 10px 15px; 
+    cursor: pointer; 
+    transition: background-color 0.3s; 
+}
+
+.atras:hover {
+    background-color: #4e80a9; /* Color de fondo al pasar el mouse */
+}
+.contenido {
+    display: flex;
+    align-items: center;
+    height: 650px;
+}
+
+.contenedor {
+    width: 700px;
+    height: 530px;
+    margin: auto;
+    display: grid;
+    justify-content: center; 
+    align-items: center; 
+    border: solid 2px #fff;
+    border-radius: 9px;
+    background-color: rgba(20, 49, 91, 0.6);
+    box-shadow: 0px 4px 25px rgba(115, 140, 169, 0.9); 
+}
+
+.contenido img{
+    width: 250px;
+    height: 250px;
+    margin: 15px;
+}
+
+.avatar {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+    width: 500px;
+}
+
+input {
+    height: 35px;
+    border-radius: 9px;
+    border: solid 1px #ccc; /* Borde por defecto */
+    transition: border 0.3s; /* Transición suave */
+}
+
+input:hover, input:focus {
+    border: solid 1px #fff; /* Borde blanco al enfocar */
+    outline: none; /* Quitar el contorno por defecto */
+}
+
+.campos {
+    display: flex;
+    justify-content: space-between; /* Mantener columnas separadas */
+    width: 100%;
+}
+
+.boton {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+button {
+    border-radius: 9px;
+    width: 50%; /* Ancho inicial */
+    height: 50px;
+    margin: 20px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+form {
+    width: 100%;
+}
+
+h1 {
+    color: #fff;
+}
+
+/***********************************/
+
+.input-container {
+    position: relative;
+    margin: 20px 0; 
+}
+
+.fila {
+    display: grid;
+    justify-content: center;
+    width: 100%;
+}
+
+.input-container label {
+    position: absolute;
+    left: 10px;
+    top: 8px; 
+    transition: 0.2s ease all; 
+    color: #000;
+    pointer-events: none; 
+}
+
+.input-container input:focus + label,
+.input-container input:not(:placeholder-shown) + label {
+    top: -15px; 
+    left: 5px; 
+    font-size: 20px; 
+    color: #738ca9;
+}
+/* Media Queries para Responsividad */
+@media (max-width: 768px) { /* Tablets y móviles */
+    .top-bar{
+        width: 100%;
+    }
+    html, body {
+        height: 100%; /* Asegura que html y body ocupen toda la altura del viewport */
+        overflow: hidden; /* Evita el scroll si no es necesario */
+    }
+
+    .contenido {
+        display: flex;
+        flex-direction: column; /* Apilar contenido verticalmente */
+        justify-content: center; /* Centrar verticalmente */
+        min-height: 100vh; /* Asegura que ocupe al menos toda la altura del viewport */
+        height: auto; /* Ajustar la altura automáticamente */
+    }
+
+    .contenedor {
+        width: 80%; /* Ancho responsivo */
+        height: auto; /* Ajustar la altura automáticamente */
+        padding: 20px; /* Espaciado interno */
+    }
+    .contenido img{
+        width: 90px;
+        height: 90px;
+    }
+    
+    .avatar {
+        width: 80%; /* Avatar ocupa el ancho completo */
+        justify-content: center; /* Centrar el avatar */
+        margin-bottom: 20px; /* Espacio debajo del avatar */
+    }
+
+    .campos {
+        flex-direction: column; /* Apilar inputs verticalmente */
+        justify-content: center; /* Centrar inputs */
+        
+    }
+
+    .input-container {
+        width: 100%; /* Cada input ocupa el ancho completo */
+        margin: 10px 0; /* Espaciado vertical entre inputs */
+        
+    }
+    .campos .input-container{
+        margin-right: 120px;
+    }
+    .campos .input-container input{
+        width: 100%;
+    }
+    
+
+    button {
+        width: 80%; /* Botón ocupa el ancho completo */
+        margin: 10px 0; /* Margen vertical */
+    }
+    
+}

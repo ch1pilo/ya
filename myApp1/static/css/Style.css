@@ -1,0 +1,216 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box; /* Asegura que el padding y el margin no afecten el ancho total */
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+}
+
+body {
+    background-color: #738ca4;
+}
+
+header {
+    display: flex;
+    height: 90px;
+    justify-content: space-between; 
+    align-items: center; 
+    border-bottom: solid 4px rgb(99, 93, 93);
+    background-color: #14315b;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+header .logo img {
+    margin-right: 10px;
+    margin-left: 2%; /* Cambiado a porcentaje */
+    width: 200px;
+}
+
+.logo h6 {
+    font-size: 30px;
+    color: #fff;
+}
+
+.paginas {
+    margin-left: auto;
+    margin-right: 5%; /* Cambiado a porcentaje */
+    font-size: 26px;
+    color: #fff;
+}
+
+.login {
+    padding-right: 30px; 
+}
+.login button{
+    border-color: #fff;
+}
+ul {
+    margin: 0; 
+    display: flex; 
+}
+
+li {
+    margin-left: 20px;
+    list-style: none;
+}
+
+button {
+    width: 100px;
+    height: 45px;
+    border-radius: 9px;
+    background-color: #213b50;
+    color: #fff;
+    font-size: 21px;
+}
+
+button:hover {
+    background-color:#4e80a9 ;
+    transition: 0.3s;
+    box-shadow: 2px 2px 5px #2d3f5c;
+}
+
+/**********************************************/
+
+.pres {
+    height: 400px;
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center;
+    background: url(../img/comunidad.jpg);
+    background-position: center;
+    background-size: cover;
+    filter: blur(8px);
+    border: solid 3px rgb(0, 0, 0);
+}
+
+.contenido {
+    position: absolute;
+    width: 100%;
+    margin-top: -250px;
+    color: #fff;
+}
+
+.contenido h1 {
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+.contenido h1:hover {
+    text-shadow: 3px 3px 7px #ccd5e0;
+    transition: 0.5s;
+}
+
+.contenido h4 {
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.contenido h1, .pres h4 {
+    width: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+/*****************************************/
+
+.somos h1, .ofrecemos h1, .redes h1 {
+    text-align: center;
+    margin-top: 35px;
+    font-size: 50px;
+    width: 280px;
+}
+.ofrecemos h1{
+    margin-top: 10px;
+}
+
+.modulos {
+    margin-left: 1%;
+    margin-right: 1%;
+    border-radius: 15px;
+    border: solid 3px;
+    background-color: #14315b;
+    color: #ccd5e0;
+}
+
+.somos, .ofrecemos, .redes {
+    display: flex;
+    width: 90%; /* Cambiado a porcentaje */
+    margin: auto;
+    margin-top: 50px;
+    border-bottom: solid 1px;
+    padding-bottom: 35px;
+}
+
+.somos p, .ofrecemos p, .redes p {
+    text-align: justify;
+    margin-right: 40px;
+    width: 100%; /* Cambiado a 100% */
+    margin-left: 80px;
+    font-size: 19px;
+}
+
+.somos label, .ofrecemos label, .redes label {
+    display: flex;
+}
+
+.somos img, .ofrecemos img, .redes img {
+    width: 180px; 
+    height: 180px;  
+    border-radius: 16px;
+    box-shadow: 3px 3px 7px #ccd5e0;;
+}
+.movil{
+    display: none;
+}
+/****************************************************/
+
+/* Responsivo */
+@media (max-width: 768px) {
+    header .logo h6 {
+        display: none; /* Ocultar nombre en móviles */
+    }
+    .movil{
+        display: block;
+    }
+    .paginas {
+        display: none; /* Ocultar páginas en móviles */
+    }
+
+    .modulos {
+        flex-direction: column; /* Cambiar a columna en móviles */
+        align-items: center; /* Centrar elementos */
+    }
+    .somos, .ofrecemos, .redes {
+        display: flex;
+        flex-direction: column; /* Alineación vertical */
+        align-items: center; /* Centrar elementos */
+    }
+    
+    .somos h1, .ofrecemos h1, .redes h1 {
+        text-align: center; /* Centrar el título */
+    }
+    .somos .desktop, .ofrecemos .desktop{
+        display: none;
+    }
+    
+    .somos .movil, .ofrecemos .movil, .redes p {
+        text-align: center; /* Centrar el texto */
+        margin: 10px 0; /* Espacio entre el texto y la imagen */
+    }
+    
+    .somos img, .ofrecemos img, .redes img {
+        display: none;
+    }
+   
+}

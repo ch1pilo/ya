@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static "css/Style4.css" %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>postular</title>
+</head>
+<body>
+    
+    <div class="top-bar">
+        <div class="user-info">
+            {% if request.user.is_authenticated %}
+                <span>Usuario: {{ request.user.tipoUser }}</span>
+            {% endif %}
+        </div>
+        <div class="button-group">
+            <button type="button" class="atras">
+                <a href="../profile" > 
+                    <img src="{% static 'img/cerrar-sesion-de-usuario.png' %}" alt="Salir">
+                </a>
+            </button>
+        </div>
+    </div>
+        {% if r%}
+        <h5> 
+            {{r}} 
+        </h5>
+        {%endif%}
+    <div class="contenedor">
+        
+        <h1>Datos personales</h1>
+        
+        <form action="../insertar/" method="POST">
+            {% csrf_token %}
+            
+            <div class="for">
+                <div class="fila">
+                    <div class="Nombre">
+                        <input name='nombre' type="text" placeholder="Nombres " required> <!-- Añadido un id al for -->
+                    </div>
+                    <div class="Apellidos">
+                        <input name="apellido" type="text" placeholder="Apellidos" required> 
+                    </div>
+                </div>
+                <div class="fila">
+                    <div class="Fecha">
+                        <input name="fecha" type="date" placeholder="Fecha de Nacimiento" required> 
+                    </div>
+                    <div class="Cedula">
+                        <input  maxlength="8" name="cedula" type="text" placeholder="Cedula de Identidad" required>
+                        
+                    </div>
+                </div>
+                <div class="fila">
+                    <div class="etnia">
+                        <select name="etnia" aria-label="Indique sugrupo">
+                            <option value="" required>Pertenece a un grupo etnico?</option>
+                            <option value="yupa">Yupa</option>
+                            <option value="guajiro">Guajiro</option>
+                            <option value="maya">Maya</option>
+                            <option value="sin_grupo">Sin grupo étnico</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="fila">
+                    <div class="tlf">
+                        <input name="tlf" type="text"   placeholder="Numero de Telefono" maxlength="11" required>
+                    </div>
+                </div>
+                
+                <div class="fila">
+                    <div class="Correo">
+                       <input name="correo" type="email" placeholder="Correo Electronico" required>
+                    </div>
+                </div>
+                <div class="fila">
+                    <div class="direccion">
+                       <input name="direccion" type="text" placeholder="Direccion" required>
+                    </div>
+                </div>
+            </div>
+            <div class="boton">
+                <button type="submit" class="enviar">continuar</button>
+            </div>
+            
+        
+        </form>
+    </div>
+</body>
+</html>

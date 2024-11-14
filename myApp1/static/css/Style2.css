@@ -1,0 +1,113 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background: url(../img/fondoa2.jpg);
+    background-position: center;
+    background-size: cover;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+
+}
+
+.inicio {
+    background: none;
+    padding: 20px;
+    border: solid 2px;
+    border-color: #ffffff;
+    border-radius: 9px;
+    box-shadow: 0px 4px 25px rgba(115, 140, 169, 0.9); /* Sombra en todos los bordes */
+    background-color: rgba(20, 49, 91, 0.6);
+
+}
+.inicio:hover{
+    box-shadow: 4px 8px 50px rgba(115, 140, 169, 0.9); /* Sombra en todos los bordes */
+    transition: 0.5s;
+}
+.impu {
+    margin-bottom: 20px;
+}
+input:focus {
+    border: solid #ffffff;
+    background: rgba(0, 0, 0, 0.6);;
+    transition: 0.3s;
+    color: #fff;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.5);
+
+}
+h2{
+    text-align: center;
+    color: #fff;
+    font-size: 67px;
+    margin-bottom: 40px;
+
+
+}
+input {
+    width: 89%;
+    padding: 10px;
+    margin: 5px 5px;
+    margin-bottom: 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.boton {
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: center; 
+}
+a {
+    text-decoration: none;
+    color: white; 
+}
+
+button, .salir  {
+    margin: 20px 20px;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 80px;
+    border:solid 2px  #c9eecb;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.entrar{
+    background: #c9eecb;
+    border: solid 2px #45a049;
+    color:rgba(0, 0, 0, 0.6)
+}
+.salir:hover {
+    background-color: #71e777;
+    transition: 0.5s;
+    color: #000;
+}
+button:hover {
+    background-color: #45a049;
+    transition: 0.5s;
+    color: #ffffff;
+}
+@media (max-width: 480px) {
+
+    .contenedor {
+        width: 90%; /* Aumenta el tamaño en pantallas muy pequeñas */
+    }
+    
+    h2 {
+        font-size: 50px; /* Ajusta el tamaño de fuente */
+        margin-top: 15px;
+    }
+
+    .salir, .entrar {
+        padding: 15px 45px;
+        margin: auto;
+    
+    }
+
+    .inicio {
+        padding: 10px; /* Reduce el padding del contenedor */
+    }
+    
+}
